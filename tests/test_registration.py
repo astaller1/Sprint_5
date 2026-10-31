@@ -1,7 +1,7 @@
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
-from tests.locators import RegisterPageLocators
+from locators import RegisterPageLocators
 from urls import Urls
 
 

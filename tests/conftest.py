@@ -2,7 +2,7 @@ import pytest
 import random
 import string
 from selenium import webdriver
-from tests.locators import RegisterPageLocators, LoginPageLocators
+from locators import RegisterPageLocators, LoginPageLocators
 from urls import Urls
 
 
@@ -16,7 +16,7 @@ def driver():
 
     yield driver_instance
 
-    driver_instance.quit
+    driver_instance.quit()
 
 @pytest.fixture
 def new_email():
