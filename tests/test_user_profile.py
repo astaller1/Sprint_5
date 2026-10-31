@@ -1,53 +1,50 @@
 import pytest
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from tests.locators import MainPageLocators, ProfilePageLocator, LoginPageLocators
+from urls import Urls
 
 
 class TestProfile:
 
     def test_click_on_profile_redirects_to_user_profile(self, driver, authorization): 
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
-        driver.find_element(By.XPATH, "//p[text()='Личный Кабинет']").click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
+        driver.find_element(*MainPageLocators.PROFILE_BUTTON).click()
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//button[text()='Выход']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(ProfilePageLocator.LOGOUT_BUTTON))
 
-        assert '/profile' in driver.current_url
-        driver.quit()
+        assert Urls.PROFILE_PAGE in driver.current_url
         
     def test_click_constructor_redirects_to_main(self, driver, authorization):
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
-        driver.find_element(By.XPATH, "//p[text()='Личный Кабинет']").click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//button[text()='Выход']")))
-        driver.find_element(By.XPATH, "//p[text()='Конструктор']").click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
+        driver.find_element(*MainPageLocators.PROFILE_BUTTON).click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(ProfilePageLocator.LOGOUT_BUTTON))
+        driver.find_element(*MainPageLocators.CONSTRUCTOR_BUTTON).click()
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
 
-        assert 'https://stellarburgers.education-services.ru' in driver.current_url
-        driver.quit()
+        assert Urls.MAIN_PAGE in driver.current_url
 
     def test_click_logo_redirect_to_main(self, driver, authorization):
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
-        driver.find_element(By.XPATH, "//p[text()='Личный Кабинет']").click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//button[text()='Выход']")))
-        driver.find_element(By.CSS_SELECTOR, 'header nav a svg').click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
+        driver.find_element(*MainPageLocators.PROFILE_BUTTON).click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(ProfilePageLocator.LOGOUT_BUTTON))
+        driver.find_element(*MainPageLocators.LOGO_BUTTON).click()
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
 
-        assert 'https://stellarburgers.education-services.ru' in driver.current_url
-        driver.quit()
+        assert Urls.MAIN_PAGE in driver.current_url
 
     def test_successfull_quit_account(self, driver, authorization):
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()='Соберите бургер']")))
-        driver.find_element(By.XPATH, "//p[text()='Личный Кабинет']").click()
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//button[text()='Выход']")))
-        driver.find_element(By.XPATH, "//button[text()='Выход']").click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_HEADER))
+        driver.find_element(*MainPageLocators.PROFILE_BUTTON).click()
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(ProfilePageLocator.LOGOUT_BUTTON))
+        driver.find_element(*ProfilePageLocator.LOGOUT_BUTTON).click()
 
-        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, "//button[text()='Войти']")))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LoginPageLocators.LOGIN_BUTTON))
 
-        assert '/login' in driver.current_url
-        driver.quit()
+        assert Urls.LOGIN_PAGE in driver.current_url
