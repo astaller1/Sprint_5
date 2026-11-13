@@ -1,8 +1,8 @@
-import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators import LoginPageLocators, MainPageLocators
 from urls import Urls
+
 
 class TestLogin:
 
@@ -57,3 +57,4 @@ class TestLogin:
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(MainPageLocators.MAIN_SECTION))
 
         assert Urls.MAIN_PAGE in driver.current_url
+ 

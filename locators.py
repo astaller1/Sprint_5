@@ -33,7 +33,7 @@ class MainPageLocators:
     # Вкладки Конструктора
 
     BUNS_TAB = (By.XPATH, "//span[text()='Булки']")
-    SAUCES_TAB =(By.XPATH, "//span[text()='Соусы']")
+    SAUCES_TAB = (By.XPATH, "//span[text()='Соусы']")
     FILLINGS_TAB = (By.XPATH, "//span[text()='Начинки']")
 
     # Родительские вкладки конструктора для проверки статуса скролла
@@ -41,3 +41,4 @@ class MainPageLocators:
     BUNS_TAB_PARENT = (By.XPATH, "//span[text()='Булки']/..") 
     SAUCES_TAB_PARENT = (By.XPATH, "//span[text()='Соусы']/..")
     FILLINGS_TAB_PARENT = (By.XPATH, "//span[text()='Начинки']/..")
+ 

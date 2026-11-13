@@ -1,4 +1,3 @@
-import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators import MainPageLocators
@@ -32,3 +31,4 @@ class TestConstructor:
         driver.find_element(*MainPageLocators.FILLINGS_TAB).click()
                 
         assert WebDriverWait(driver, 5).until(expected_conditions.text_to_be_present_in_element_attribute(MainPageLocators.FILLINGS_TAB_PARENT, 'class', 'tab_tab_type_current'))
+ 
